@@ -24,4 +24,4 @@
 	git clone https://github.com/analyticsearch/CrackMapExec.git
 	pyinstaller --clean --onefile crackmapexec.py
 
-4. Profit Find the around-6MB executable in the created dist folder
+4. Compiled executable will be in the created dist folder
