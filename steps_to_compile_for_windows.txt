@@ -1,0 +1,25 @@
+I. Set up the compilation environment
+	python-2.7.10.msi
+	[Git-2.6.1-32-bit.exe] (https://github.com/git-for-windows/git/releases/download/v2.6.1.windows.1/Git-2.6.1-32-bit.exe) to clone the impacket repo
+	crackmapexec prerequisities with pip install --upgrade -r requirements.txt
+	VCForPython27.msi to be able to compile the pyinstaller core module
+	pyinstaller with pip install pyinstaller
+
+II. Monkey-Patch the original code General rules to ensure Windows compatibility:
+	Remove references to Unix stuff like os.geteuid(), that don't make sense on Windows
+	Patch the code section related to term colors from
+
+	from termcolor import cprint, colored
+	to
+	from termcolor import cprint, colored
+	import colorama
+	colorama.init()
+
+	Take a look at the following link for more information on that topic.
+
+	3. Remove illegal chars in created/accessed filenames
+	https://stackoverflow.com/questions/21858567/why-does-termcolor-output-control-characters-instead-of-colored-text-in-the-wind
+
+III. Compile pyinstaller --clean --onefile crackmapexec.py
+
+IV. Profit Find the around-6MB executable in the created dist folder
